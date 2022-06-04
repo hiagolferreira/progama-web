@@ -1,0 +1,21 @@
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/<a>/<b>/<c>")
+def calcular(a,b,c):
+    a = float(a)
+    b = float(b)
+    c = float(c)
+    result = (a + b + c) / 3
+   
+    if(result>= 60):
+        return "Você foi aprovado, parabens!"
+    else: 
+        return "Você foi Reprovado, mais sorte da proxima vez."
+
+  
+
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
